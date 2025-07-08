@@ -4,18 +4,124 @@
   <meta charset="UTF-8">
   <title>毎日のフォーム一覧</title>
   <link rel="stylesheet" href="style.css">
-  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
 </head>
 <body>
   <div class="container">
     <h1>車両運行記録</h1>
+    <label for="employeeNumber">社員番号：</label>
+    <input type="text" id="employeeNumber" placeholder="社員番号を入力" />
+    <br />
+    <div class ="vehicleselect">
+      <label for="carSelect">車両選択：</label>
+      <select id="carSelect">
+      <option value="1522_ハイエース２．０">1522_ハイエース２．０</option>
+      <option value="4224_ファミリアバン">4224_ファミリアバン</option>
+    </select>
+    </div>
     <ul class="form-list">
-      <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hUQVFHVkVOVEgzSFJTODZMUzk3RURUWjhDMS4u" target = "_blank">車両運行記録</a></li>
-      <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hUN0o0NjZBOTJOREw5MTJGR0s5M1ozV1RNOS4u" target = "_blank">日常点検記録</a></li>
-      <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hUQkg3OU5JNjFKNEhRWU9WNUE1V0o0NlhCNy4u"target = "_blank"> アルコールチェック</a></li>
-      <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hURUNHN1JPWUI0NjZRTjA3Uks2M1NRNVJDNS4u"target = "_blank">給油</a></li> 
-      <li><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSjx7RyfNd1lJm2DS8swImbVUMTdLVDNHUU9FU0tSUlI1WVFPTFQ2QlQzUi4u"target = "_blank">月例車両点検</a></li> 
+      <li><a id="dailyform" target="_blank">日常点検記録</a></li>
+      <li><a id="alcoholcheckform" target="_blank">アルコールチェック</a></li>
+      <li><a id="vehicleform" target="_blank">車両運行記録</a></li>
+      <li><a id="refuelingform" target="_blank">給油</a></li>
+      <li><a id="monthlyinspectionform" target="_blank">月別車両点検</a></li>
     </ul>
   </div>
+  <script>
+    // 各リンクとフォームURL（固定部分）
+    const formLinks = [
+      {
+        id: 'dailyform',
+        url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hUN0o0NjZBOTJOREw5MTJGR0s5M1ozV1RNOS4u',
+        employeeparamkey:'r5e017d4398184b50b2d39c6bca2e05b5',
+        dayparamkey:'r2e40c18bd7d24dda87e30e6c2d707715',
+        vehicleparamkey :'r6d36c0ccd4de48febe97959d26fddcf0'
+      },
+      {
+        id: 'alcoholcheckform',
+        url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hUQkg3OU5JNjFKNEhRWU9WNUE1V0o0NlhCNy4u',
+        employeeparamkey:'r5ba8aa5b55c046f796f1365b0bcb57a5',
+        dayparamkey:'r6e757665ceaf4afcacdba9a6a17b05db',
+        vehicleparamkey :'r8fc71a03c6b34417b27470d26b51cd5d'
+      },
+      {
+        id: 'vehicleform',
+        url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hUQVFHVkVOVEgzSFJTODZMUzk3RURUWjhDMS4u',
+        employeeparamkey:'rf4804a591cbc456cbcf187f6a588f037',
+        dayparamkey:'r1aabda22cb064db1b32c9bcb7f4d85c8',
+        vehicleparamkey :'r7510c096dddc4665888c88f3dc414c62'
+      },
+      {
+        id: 'refuelingform',
+        url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSqG8jiopPhRIoZpMUYcyf3hURUNHN1JPWUI0NjZRTjA3Uks2M1NRNVJDNS4u',
+        employeeparamkey:'r37777b5195a4434497c7d2ad60f77f12',
+        dayparamkey:'rc3416a3d38a34b0f87ac375160f8a169',
+        vehicleparamkey :'r462f208bdd2c48e0ade76ad85ebcff94'
+      },
+      {
+        id: 'monthlyinspectionform',
+        url: 'https://forms.office.com/Pages/ResponsePage.aspx?id=EcOKRIKR_EKLhTvQWVZxSjx7RyfNd1lJm2DS8swImbVUMTdLVDNHUU9FU0tSUlI1WVFPTFQ2QlQzUi4u',
+        employeeparamkey:'r415549a19aff47fbb4486ed88f7d8780',
+        vehicleparamkey :'r8ccf8ebbba924fefb78cd0245a8733bb'
+      }
+    ];
+    function updateLinks() {
+      const selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
+      const employnumber = document.getElementById('employeeNumber').value;
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // 月は0始まり
+      const dd = String(today.getDate()).padStart(2, '0');
+      const formatteddate = `${yyyy}-${mm}-${dd}`;
+
+      formLinks.forEach(param => {
+        let finalUrl = param.url;
+        
+        if (param.employeeparamkey){
+          finalUrl += `&${param.employeeparamkey}=%22${employnumber}%22`;
+        }
+        if (param.dayparamkey){
+          finalUrl += `&${param.dayparamkey}=%22${formatteddate}%22`;
+        }
+        if (param.vehicleparamkey) {
+          finalUrl += `&${param.vehicleparamkey}=%22${selectedCar}%22`;
+        }
+        
+        const anchor = document.getElementById(param.id);
+        if (anchor) {
+          anchor.href = finalUrl;
+        }
+      });
+    }
+
+    // 初回と選択変更時に更新
+    document.getElementById('carSelect').addEventListener('change', updateLinks);
+    document.getElementById('employeeNumber').addEventListener('input', updateLinks);
+    updateLinks(); // 初期状態でもリンク反映
+
+     window.addEventListener('DOMContentLoaded', () => {
+    const savedEmp = localStorage.getItem('employeeNumber');
+    if (savedEmp) empInput.value = savedEmp;
+
+    const savedCar = localStorage.getItem('selectedCar');
+    if (savedCar) carSelect.value = savedCar;
+
+    updateLinks();
+  });
+
+  const empInput = document.getElementById('employeeNumber');
+  const carSelect = document.getElementById('carSelect');
+  // 入力や選択変更時に保存＆リンク更新
+  empInput.addEventListener('input', () => {
+    localStorage.setItem('employeeNumber', empInput.value);
+    updateLinks();
+  });
+  carSelect.addEventListener('change', () => {
+    localStorage.setItem('selectedCar', carSelect.value);
+    updateLinks();
+  });
+
+  </script>
+
 </body>
 </html>
+

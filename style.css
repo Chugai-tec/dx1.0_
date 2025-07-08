@@ -1,43 +1,88 @@
 body {
-  font-family: sans-serif;
-  background: #f8f9fa;
-  margin: 0;
-  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #d0e7ff);
+  padding: 5vh 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-  max-width: 500px;
-  margin: auto;
+  max-width: 300px;
+  width: 100%;
   background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.6s ease-out;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+ letter-spacing: 2px;
+  color: #110a0a;
+  animation: slideInFade 1s ease forwards;
 }
 
 .form-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .form-list li {
-  margin-bottom: 15px;
+  margin-bottom: 1.25rem;
 }
 
 .form-list a {
+  max-width: 300px;
   display: block;
-  padding: 12px 20px;
-  background: #007bff;
+  margin: 0 auto;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #0d6efd, #339af0);
   color: white;
+  text-align: center;
   text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
 }
 
-.form-list a:hover {
-  background: #0056b3;
+.form-list a:hover,
+.form-list a:focus {
+  background: linear-gradient(135deg, #0056b3, #1c7ed6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 86, 179, 0.4);
+  outline: none;
 }
+
+.vehicleselect {
+  display: flex;
+  align-items: center; /* 縦方向の中央揃え */
+  gap: 4px; /* ラベルとセレクトの間隔 */
+  margin: 10px 0; /* 上下の余白 */
+}
+
+#carSelect{
+  flex-grow: 0.15; /* 必要に応じて幅を調整 */
+  padding: 2px 2px; /* 元のパディングを少し整える */
+  margin: 0; /* marginは親のgapで調整 */
+  text-align: left; /* セレクト内のテキスト左寄せ */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

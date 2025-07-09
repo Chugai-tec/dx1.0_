@@ -60,13 +60,13 @@ h1 {
   outline: none;
 }
 #employeeNumber{
-  margin-left: 4px;
-  width: 281px;
+  width: 70%; /* 親の幅にぴったり合わせる */
+  box-sizing: border-box; /* パディングやボーダーを含めて幅を計算 */
 }
 .vehicleselect {
   display: flex;
   align-items: center; /* 縦方向の中央揃え */
-  gap: 0.5rem; /* ラベルとセレクトの間隔 */
+  gap: 0.3rem; /* ラベルとセレクトの間隔 */
   margin: 15px 0; /* 上下の余白 */
 }
 
@@ -74,8 +74,11 @@ h1 {
   white-space: nowrap;
 }
 #carSelect{
+  width: 70%; /* 親の幅にぴったり合わせる */
+  box-sizing: border-box; /* パディングやボーダーを含めて幅を計算 */
   padding: 2px 2px; /* 元のパディングを少し整える */
   text-align: left; /* セレクト内のテキスト左寄せ */
+  font-size: 12px;
 }
 
 @keyframes fadeIn {

@@ -5,11 +5,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 .container {
-  max-width: 300px;
+  max-width: 380px;
   width: 100%;
   background: white;
   padding: clamp(1rem, 2vw, 1.5rem);
@@ -22,7 +21,7 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2rem;
- letter-spacing: 2px;
+  letter-spacing: 2px;
   color: #110a0a;
   animation: slideInFade 1s ease forwards;
 }
@@ -60,20 +59,25 @@ h1 {
   box-shadow: 0 6px 16px rgba(0, 86, 179, 0.4);
   outline: none;
 }
-
+#employeeNumber{
+  margin-left: 4px;
+  width: 281px;
+}
 .vehicleselect {
   display: flex;
   align-items: center; /* 縦方向の中央揃え */
-  gap: 4px; /* ラベルとセレクトの間隔 */
-  margin: 10px 0; /* 上下の余白 */
+  gap: 0.5rem; /* ラベルとセレクトの間隔 */
+  margin: 15px 0; /* 上下の余白 */
 }
 
+.vehicleselect label {
+  white-space: nowrap;
+}
 #carSelect{
-  flex-grow: 0.15; /* 必要に応じて幅を調整 */
   padding: 2px 2px; /* 元のパディングを少し整える */
-  margin: 0; /* marginは親のgapで調整 */
   text-align: left; /* セレクト内のテキスト左寄せ */
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -84,5 +88,4 @@ h1 {
     transform: translateY(0);
   }
 }
-
 

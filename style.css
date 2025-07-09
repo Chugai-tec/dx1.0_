@@ -60,7 +60,7 @@ h1 {
   outline: none;
 }
 #employeeNumber{
-  width: 70%; /* 親の幅にぴったり合わせる */
+  width: 60%; /* 親の幅にぴったり合わせる */
   box-sizing: border-box; /* パディングやボーダーを含めて幅を計算 */
 }
 .vehicleselect {

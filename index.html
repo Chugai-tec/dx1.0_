@@ -128,6 +128,7 @@
     if (savedCar) carSelect.value = savedCar;
 
     updateLinks();
+    updateDailyFormStatus()
   });
 
   // 入力や選択変更時に保存＆リンク更新
@@ -140,10 +141,11 @@
 
   async function checkDailyInspectionDuplicate(selectedCar) {
     // GitHub raw URL 例
-    const url = 'https://raw.githubusercontent.com/KimuraTomonori/dx1.0_-/main/inspection-log.json';
+    const url = 'https://raw.githubusercontent.com/KimuraTomonori/dx1.0_-/refs/heads/main/inspection-log.json';
     try {
       const res = await fetch(url);
       const data = await res.json();
+      //alert(selectedCar)
       return data.includes(selectedCar);
     } catch (e) {
       return false; // エラー時は許可するなど適宜調整
@@ -152,8 +154,10 @@
 
   async function updateDailyFormStatus() {
     const dailyForm = document.getElementById('dailyform');
+    //alert(document.getElementById('carSelect').value)
     const isDuplicate = await checkDailyInspectionDuplicate(document.getElementById('carSelect').value)
     if (isDuplicate) {
+       //alert(document.getElementById('carSelect').value);
       dailyForm.style.pointerEvents = 'none';
       dailyForm.style.color = 'gray';
       dailyForm.textContent = '日常点検記録（本日入力済）';
@@ -165,9 +169,8 @@
       dailyForm.title = '';
     }
   }
-  document.addEventListener('DOMContentLoaded', updateDailyFormStatus);
+  //document.addEventListener('DOMContentLoaded', updateDailyFormStatus);
   carSelect.addEventListener('change', updateDailyFormStatus);
-  updateDailyFormStatus()
   </script>
 </body>
 </html>

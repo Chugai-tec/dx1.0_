@@ -81,6 +81,10 @@ h1 {
   font-size: 12px;
 }
 
+.context {
+  font-size: 10px;
+  margin-left: 20px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

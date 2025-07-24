@@ -135,7 +135,9 @@
     if (savedCar) carSelect.value = savedCar;
 
     updateLinks();
-    updateDailyFormStatus()
+    <!--
+    updateDailyFormStatus() 
+    -->
   });
 
   // 入力や選択変更時に保存＆リンク更新
@@ -146,7 +148,7 @@
     localStorage.setItem('selectedCar', carSelect.value);
   });
 
-    <!--
+  <!--
   async function checkDailyInspectionDuplicate(selectedCar) {
     // GitHub raw URL 例
     const url = 'https://raw.githubusercontent.com/KimuraTomonori/dx1.0_-/refs/heads/main/inspection-log.json';

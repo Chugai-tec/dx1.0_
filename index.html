@@ -91,14 +91,7 @@
       }
     ];
     function updateLinks() {
-      //const selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
-      let selectedCar;
-      const embeddingCar = new URLSearchParams(window.location.search).get("car");
-      if (!embeddingCar){
-        selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
-      }else{
-        selectedCar = encodeURIComponent(embeddingCar)
-      }
+      const selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
       const employnumber = document.getElementById('employeeNumber').value;
       const today = new Date();
       const yyyy = today.getFullYear();
@@ -132,19 +125,23 @@
     empInput.addEventListener('input', updateLinks);
     carSelect.addEventListener('change', updateLinks);
 
-    updateLinks(); // 初期状態でもリンク反映
+    //updateLinks(); // 初期状態でもリンク反映
 
     window.addEventListener('DOMContentLoaded', () => {
     const savedEmp = localStorage.getItem('employeeNumber');
     if (savedEmp) empInput.value = savedEmp;
 
     const savedCar = localStorage.getItem('selectedCar');
-    if (savedCar) carSelect.value = savedCar;
-
+    //if (savedCar) carSelect.value = savedCar;
+    const embeddingCar = new URLSearchParams(window.location.search).get("car");//埋め込み車両名
+    //埋め込み優先
+    if (embeddingCar){
+      carSelect.value = decodeURIComponent(embeddingCar)
+    }else if(savedCar){
+       carSelect.value = savedCar;
+    }
     updateLinks();
-    <!--
-    updateDailyFormStatus() 
-    -->
+    //updateDailyFormStatus() 
   });
 
   // 入力や選択変更時に保存＆リンク更新
@@ -155,7 +152,7 @@
     localStorage.setItem('selectedCar', carSelect.value);
   });
 
-  <!--
+  /*
   async function checkDailyInspectionDuplicate(selectedCar) {
     // GitHub raw URL 例
     const url = 'https://raw.githubusercontent.com/KimuraTomonori/dx1.0_-/refs/heads/main/inspection-log.json';
@@ -188,9 +185,10 @@
   }
   //document.addEventListener('DOMContentLoaded', updateDailyFormStatus);
   carSelect.addEventListener('change', updateDailyFormStatus);
-  -->
+  */
   </script>
 </body>
 </html>
+
 
 

@@ -91,7 +91,14 @@
       }
     ];
     function updateLinks() {
-      const selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
+      //const selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
+      let selectedCar;
+      const embeddingCar = new URLSearchParams(window.location.search).get("car");
+      if (!embeddingCar){
+        selectedCar = encodeURIComponent(document.getElementById('carSelect').value);
+      }else{
+        selectedCar = encodeURIComponent(embeddingCar)
+      }
       const employnumber = document.getElementById('employeeNumber').value;
       const today = new Date();
       const yyyy = today.getFullYear();
@@ -185,4 +192,5 @@
   </script>
 </body>
 </html>
+
 

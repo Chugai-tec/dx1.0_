@@ -148,10 +148,12 @@
   empInput.addEventListener('input', () => {
     localStorage.setItem('employeeNumber', empInput.value);
   });
-  carSelect.addEventListener('change', () => {
+  //carSelect.addEventListener('change', () => {
+    //localStorage.setItem('selectedCar', carSelect.value);
+  //});
+　carSelect.addEventListener('input', () => {
     localStorage.setItem('selectedCar', carSelect.value);
   });
-
   /*
   async function checkDailyInspectionDuplicate(selectedCar) {
     // GitHub raw URL 例
@@ -189,6 +191,7 @@
   </script>
 </body>
 </html>
+
 
 
 

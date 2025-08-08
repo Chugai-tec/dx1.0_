@@ -128,21 +128,22 @@
     //updateLinks(); // 初期状態でもリンク反映
 
     window.addEventListener('DOMContentLoaded', () => {
-    const savedEmp = localStorage.getItem('employeeNumber');
-    if (savedEmp) empInput.value = savedEmp;
-
-    const savedCar = localStorage.getItem('selectedCar');
-    //if (savedCar) carSelect.value = savedCar;
-    const embeddingCar = new URLSearchParams(window.location.search).get("car");//埋め込み車両名
-    //埋め込み優先
-    if (embeddingCar){
-      carSelect.value = decodeURIComponent(embeddingCar)
-    }else if(savedCar){
-       carSelect.value = savedCar;
-    }
-    updateLinks();
-    //updateDailyFormStatus() 
-  });
+      const savedEmp = localStorage.getItem('employeeNumber');
+      if (savedEmp) empInput.value = savedEmp;
+  
+      const savedCar = localStorage.getItem('selectedCar');
+      //if (savedCar) carSelect.value = savedCar;
+      const embeddingCar = new URLSearchParams(window.location.search).get("car");//埋め込み車両名
+      //埋め込み優先
+      if (embeddingCar){
+        carSelect.value = decodeURIComponent(embeddingCar)
+      }else if(savedCar){
+         carSelect.value = savedCar;
+      }
+      localStorage.setItem('selectedCar', carSelect.value);
+      updateLinks();
+      //updateDailyFormStatus() 
+    });
 
   // 入力や選択変更時に保存＆リンク更新
   empInput.addEventListener('input', () => {
@@ -151,7 +152,7 @@
   //carSelect.addEventListener('change', () => {
     //localStorage.setItem('selectedCar', carSelect.value);
   //});
-　carSelect.addEventListener('input', () => {
+　carSelect.addEventListener('change', () => {
     localStorage.setItem('selectedCar', carSelect.value);
   });
   /*
@@ -191,6 +192,7 @@
   </script>
 </body>
 </html>
+
 
 
 
